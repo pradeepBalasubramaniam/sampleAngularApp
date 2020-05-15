@@ -1,0 +1,20 @@
+<p>home Page</p>
+
+<h2>List of Users</h2>
+<div class="container">
+  <div class="row">
+    <div class="col">Name</div>
+    <div class="col">Role</div>
+  </div>
+  <div class="row" *ngFor="let user of UserInfo">
+    <div class="col">
+      <a [routerLink]="['/profile', user.id]">{{ user.name }}</a>
+    </div>
+    <div class="col">
+      {{ user.role }}
+    </div>
+  </div>
+</div>
+
+<p>Total : 3 {{ 3 | plural: "user" }}</p>
+<p>OnLeave : 1 {{ 1 | plural: "user" }}</p>

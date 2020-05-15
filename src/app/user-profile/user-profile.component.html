@@ -1,0 +1,9 @@
+<h2>user-profile</h2>
+
+<section *ngIf="user">
+  <p><label>Name: </label> {{ user.name | uppercase }}</p>
+  <p><label>Age: </label> {{ user.age }}</p>
+  <p><label>Role: </label> {{ user.role }}</p>
+  <p><label>DOB: </label> {{ user.dob | date: "dd-MM-yyyy" }}</p>
+  <p><label>Salary: </label> {{ user.salary | currency }}</p>
+</section>
