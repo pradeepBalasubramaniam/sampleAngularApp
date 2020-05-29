@@ -1,0 +1,78 @@
+<p>Reactive form with submit and validation!</p>
+
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit(profileForm.value)">
+  <div class="row">
+    <label>
+      First Name: <br />
+      <input type="text" formControlName="firstName" required />
+    </label>
+    <div *ngIf="f.firstName?.errors" class="alert">
+      <div *ngIf="f.firstName.errors.required">First Name is required</div>
+    </div>
+  </div>
+  <div class="row">
+    <label>
+      Last Name: <br />
+      <input type="text" formControlName="lastName" />
+    </label>
+  </div>
+  <div class="row">
+    <label>
+      Contact Number: <br />
+      <input type="text" formControlName="mobile" />
+    </label>
+    <div *ngIf="f.mobile?.errors" class="alert">
+      <div *ngIf="f.mobile.errors.required">Contanct Number is required</div>
+      <div *ngIf="f.mobile.errors.pattern">
+        Contanct Number must be a number
+      </div>
+      <div *ngIf="!f.mobile.errors.pattern && f.mobile.errors.minlength">
+        Contanct Number must contain minimum of 10 numbers
+      </div>
+    </div>
+  </div>
+  <div class="row" formGroupName="address">
+    <h3>Address</h3>
+    <div class="row">
+      <label>
+        Street: <br />
+        <input type="text" formControlName="street" />
+      </label>
+    </div>
+    <div class="row">
+      <label>
+        City: <br />
+        <input type="text" formControlName="city" />
+      </label>
+    </div>
+    <div class="row">
+      <label>
+        State: <br />
+        <input type="text" formControlName="state" />
+      </label>
+    </div>
+    <div class="row">
+      <label>
+        Zip Code: <br />
+        <input type="text" formControlName="zip" />
+      </label>
+    </div>
+  </div>
+  <div class="row">
+    <button type="submit" [disabled]="!profileForm.valid" class="mx-2">
+      Submit
+    </button>
+
+    <button class="mx-2" (click)="updateProfile()">
+      update Multiple fields
+    </button>
+
+    <button class="mx-2" (click)="(clear)">
+      Reset
+    </button>
+  </div>
+</form>
+
+<p>Form Status: {{ profileForm.status }}</p>
+
+<p>Form Values: {{ profileForm.value | json }}</p>
